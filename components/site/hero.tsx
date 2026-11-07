@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 import {
   BriefcaseIcon,
@@ -98,14 +97,17 @@ function HeroGlobe() {
       {/* soft brand glow behind the globe */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-8 top-1/3 bottom-1/4 -z-10 rounded-full bg-[radial-gradient(closest-side,oklch(0.55_0.2_305/35%),transparent_75%)] blur-2xl"
+        className="pointer-events-none absolute inset-x-0 top-1/3 -z-10 bg-[radial-gradient(closest-side,oklch(0.55_0.2_305/35%),transparent_75%)] blur-2xl"
       />
-      <Image
-        src={globe}
-        alt=""
-        preload
-        sizes="(min-width: 1024px) 896px, 100vw"
-        className="h-auto w-full"
+      {/* globe rendered as a css background-image */}
+      <div
+        aria-hidden="true"
+        role="presentation"
+        className="aspect-1440/1882 w-full [mask-image:radial-gradient(90%_70%_at_50%_62%,black_55%,transparent)] bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url("${globe.src}")`,
+          backgroundSize: "cover",
+        }}
       />
     </div>
   )
@@ -167,7 +169,7 @@ export function Hero() {
         </p>
       </div>
 
-      {/* <HeroGlobe  /> */}
+      <HeroGlobe />
 
       <div
         aria-hidden="true"
