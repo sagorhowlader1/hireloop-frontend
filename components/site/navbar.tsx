@@ -95,7 +95,7 @@ export function Navbar() {
             variant="ghost"
             className="text-muted-foreground hover:text-foreground"
             nativeButton={false}
-            render={<Link href="/login" />}
+            render={<Link href="/signin" />}
           >
             Sign In
           </Button>
@@ -149,7 +149,7 @@ export function Navbar() {
                 variant="outline"
                 className="flex-1"
                 nativeButton={false}
-                render={<Link href="/login" />}
+                render={<Link href="/signin" />}
               >
                 Sign In
               </Button>

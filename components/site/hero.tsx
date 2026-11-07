@@ -167,7 +167,7 @@ export function Hero() {
         </p>
       </div>
 
-      <HeroGlobe />
+      {/* <HeroGlobe  /> */}
 
       <div
         aria-hidden="true"
