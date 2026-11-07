@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import {
   BriefcaseIcon,
@@ -93,15 +94,12 @@ function HeroStat({
 function HeroGlobe() {
   return (
     <div className="relative mx-auto max-w-4xl px-4 sm:mt-14">
-      {/* globe rendered as a css background-image */}
-      <div
-        aria-hidden="true"
-        role="presentation"
-        className="aspect-1440/1882 w-full [mask-image:radial-gradient(90%_70%_at_50%_62%,black_55%,transparent)] bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url("${globe.src}")`,
-          backgroundSize: "cover",
-        }}
+      <Image
+        src={globe}
+        alt=""
+        preload
+        sizes="(min-width: 1024px) 896px, 100vw"
+        className="h-auto w-full"
       />
     </div>
   )
