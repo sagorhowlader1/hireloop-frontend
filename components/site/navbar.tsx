@@ -16,6 +16,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import logo from "@/app/assets/logo.png"
+import { ThemeToggle, ThemeToggleCompact } from "@/components/site/theme-toggle"
 
 const NAV_LINKS = [
   { label: "Browse Jobs", href: "/jobs" },
@@ -91,6 +92,7 @@ export function Navbar() {
 
         {/* Desktop actions */}
         <div className="hidden items-center gap-2 md:flex">
+          <ThemeToggle />
           <Button
             variant="ghost"
             className="text-muted-foreground hover:text-foreground"
@@ -128,7 +130,10 @@ export function Navbar() {
               <SheetTitle>
                 <span className="sr-only">HireLoop</span>
               </SheetTitle>
-              <Logo className="order-first" />
+              <div className="flex flex-1 items-center justify-between">
+                <Logo />
+                <ThemeToggleCompact />
+              </div>
             </SheetHeader>
             <nav
               aria-label="Mobile navigation"
