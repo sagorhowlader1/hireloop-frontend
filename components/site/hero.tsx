@@ -8,7 +8,6 @@ import {
 } from "lucide-react"
 
 import globe from "@/app/assets/globe.png"
-import { cn } from "cn"
 
 import { HeroSearch } from "@/components/site/hero-search"
 
@@ -94,11 +93,6 @@ function HeroStat({
 function HeroGlobe() {
   return (
     <div className="relative mx-auto max-w-4xl px-4 sm:mt-14">
-      {/* soft brand glow behind the globe */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-1/3 -z-10 bg-[radial-gradient(closest-side,oklch(0.55_0.2_305/35%),transparent_75%)] blur-2xl"
-      />
       {/* globe rendered as a css background-image */}
       <div
         aria-hidden="true"
@@ -170,14 +164,6 @@ export function Hero() {
       </div>
 
       <HeroGlobe />
-
-      <div
-        aria-hidden="true"
-        className={cn(
-          "pointer-events-none absolute inset-x-0 top-0 -z-10 h-72",
-          "bg-[radial-gradient(60%_100%_at_50%_0%,oklch(0.55_0.18_305/20%),transparent_70%)]"
-        )}
-      />
     </section>
   )
 }
