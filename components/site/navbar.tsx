@@ -19,11 +19,7 @@ import logo from "@/app/assets/logo.png"
 import { ThemeToggle, ThemeToggleCompact } from "@/components/site/theme-toggle"
 import { useSession, signOut } from "@/lib/auth-client"
 
-const NAV_LINKS = [
-  { label: "Browse Jobs", href: "/jobs" },
-  { label: "Company", href: "/companies" },
-  { label: "Pricing", href: "/pricing" },
-]
+
 
 function isActivePath(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`)
@@ -68,11 +64,15 @@ function NavLink({
 
 export function Navbar() {
   const pathname = usePathname()
-  const {data: session} = useSession()
+  const { data: session } = useSession()
 
-
-  console.log('user session in navbar', session)
-  const handleSigOut = async() => {
+  const NAV_LINKS = [
+    { label: "Browse Jobs", href: "/jobs" },
+    { label: "Company", href: "/companies" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Dashboard", href: `/dashboard/${session?.user.role || 'seeker'}` },
+  ]
+  const handleSigOut = async () => {
     await signOut()
   }
   return (
@@ -99,39 +99,39 @@ export function Navbar() {
 
         {/* Desktop actions */}
         {
-          session?.user ? 
-          <>
-          <span>Welcome {session.user.name}</span>
-          <Button
-            variant="ghost"
-            className="text-muted-foreground cursor-pointer hover:text-foreground"
-            nativeButton={true}
-           onClick={handleSigOut}
-          >
-            Sign Out
-          </Button>
-          </>
+          session?.user ?
+            <>
+              <span>Welcome {session.user.name}</span>
+              <Button
+                variant="ghost"
+                className="text-muted-foreground cursor-pointer hover:text-foreground"
+                nativeButton={true}
+                onClick={handleSigOut}
+              >
+                Sign Out
+              </Button>
+            </>
 
-          : <>
-          <div className="hidden items-center gap-2 md:flex">
-          <ThemeToggle />
-          <Button
-            variant="ghost"
-            className="text-muted-foreground hover:text-foreground"
-            nativeButton={false}
-            render={<Link href="/signin" />}
-          >
-            Sign In
-          </Button>
-          <Button
-            nativeButton={false}
-            className="border-border/80"
-            render={<Link href="/signup" />}
-          >
-            Get Started
-          </Button>
-        </div>
-          </>
+            : <>
+              <div className="hidden items-center gap-2 md:flex">
+                <ThemeToggle />
+                <Button
+                  variant="ghost"
+                  className="text-muted-foreground hover:text-foreground"
+                  nativeButton={false}
+                  render={<Link href="/signin" />}
+                >
+                  Sign In
+                </Button>
+                <Button
+                  nativeButton={false}
+                  className="border-border/80"
+                  render={<Link href="/signup" />}
+                >
+                  Get Started
+                </Button>
+              </div>
+            </>
         }
 
         {/* Mobile menu */}

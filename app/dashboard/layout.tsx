@@ -6,7 +6,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     <SidebarProvider>
       <DashboardSidebar/>
       <main>
-        <SidebarTrigger />
+        <SidebarTrigger className={'cursor-pointer'} />
         {children}
       </main>
     </SidebarProvider>

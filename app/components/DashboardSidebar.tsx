@@ -18,12 +18,15 @@ import {
   CreditCard,
   DollarSign,
   FileText,
+  Home,
   LayoutDashboard,
   ListChecks,
+  PlusCircle,
   Settings,
   Users,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
+import Link from "next/link"
 
 type Role = "seeker" | "recruiter" | "admin"
 
@@ -36,6 +39,12 @@ type MenuItem = {
 
 const menuItemsByRole: Record<Role, MenuItem[]> = {
   seeker: [
+    {
+      id: "seeker-home",
+      name: "Home",
+      url: "/",
+      icon: Home,
+    },
     {
       id: "seeker-dashboard",
       name: "Dashboard",
@@ -75,6 +84,12 @@ const menuItemsByRole: Record<Role, MenuItem[]> = {
   ],
   recruiter: [
     {
+      id: "recruiter-home",
+      name: "Home",
+      url: "/",
+      icon: Home,
+    },
+    {
       id: "recruiter-dashboard",
       name: "Dashboard",
       url: "/dashboard",
@@ -89,8 +104,14 @@ const menuItemsByRole: Record<Role, MenuItem[]> = {
     {
       id: "recruiter-manage-jobs",
       name: "Manage Jobs",
-      url: "/dashboard/manage-jobs",
+      url: "/dashboard/jobs",
       icon: ListChecks,
+    },
+    {
+      id: "recruiter-add-job",
+      name: "Add Job",
+      url: "/dashboard/jobs/new",
+      icon: PlusCircle,
     },
     {
       id: "recruiter-applications",
@@ -106,6 +127,12 @@ const menuItemsByRole: Record<Role, MenuItem[]> = {
     },
   ],
   admin: [
+    {
+      id: "admin-home",
+      name: "Home",
+      url: "/",
+      icon: Home,
+    },
     {
       id: "admin-dashboard",
       name: "Dashboard",
@@ -149,7 +176,7 @@ export function DashboardSidebar() {
           <SidebarMenu>
             {items.map((item) => (
               <SidebarMenuItem key={item.id}>
-                <SidebarMenuButton render={<a href={item.url} />}>
+                <SidebarMenuButton render={<Link href={item.url} />}>
                   <item.icon />
                   <span>{item.name}</span>
                 </SidebarMenuButton>
