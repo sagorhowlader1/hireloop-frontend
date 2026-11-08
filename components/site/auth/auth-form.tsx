@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useState } from "react"
-import { EyeIcon, EyeOffIcon, Users, Shield, Mail, User } from "lucide-react"
+import { EyeIcon, EyeOffIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
@@ -58,9 +58,7 @@ export function AuthForm({ mode }: { mode: AuthMode }) {
   const isSignUp = mode === "signup"
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [role, setRole] = useState<"seeker" | "recruiter" | "admin" | "user">(
-    "seeker"
-  )
+  const [role, setRole] = useState<"seeker" | "recruiter" | "admin">("seeker")
 
   const toggle = TOGGLES[mode]
 
@@ -149,30 +147,26 @@ export function AuthForm({ mode }: { mode: AuthMode }) {
             <RadioGroup
               value={role}
               onValueChange={(value) =>
-                setRole(value as "seeker" | "recruiter" | "admin" | "user")
+                setRole(value as "seeker" | "recruiter" | "admin")
               }
-              className="mt-2 grid grid-cols-4 gap-2"
+              className="mt-2 grid grid-cols-3 gap-2"
             >
               {(
                 [
-                  { value: "seeker", icon: Users, label: "Seeker" },
-                  { value: "recruiter", icon: Mail, label: "Recruiter" },
-                  { value: "admin", icon: Shield, label: "Admin" },
-                  { value: "user", icon: User, label: "User" },
+                  { value: "seeker", label: "Seeker" },
+                  { value: "recruiter", label: "Recruiter" },
+                  { value: "admin", label: "Admin" },
                 ] as const
               ).map((option) => (
                 <label
                   key={option.value}
-                  title={option.label}
-                  aria-label={option.label}
-                  className="flex cursor-pointer items-center justify-center rounded-lg border border-input bg-background/40 p-2.5 transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/10"
+                  className="flex cursor-pointer items-center gap-2 rounded-lg border border-input bg-background/40 px-3 py-2 text-sm transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/10"
                 >
                   <RadioGroupItem
                     value={option.value}
                     id={`role-${option.value}`}
-                    className="sr-only"
                   />
-                  <option.icon className="size-5" />
+                  {option.label}
                 </label>
               ))}
             </RadioGroup>
