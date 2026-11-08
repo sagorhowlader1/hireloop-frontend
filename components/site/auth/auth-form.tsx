@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { authClient } from "@/lib/auth-client"
+
 
 export type AuthMode = "signin" | "signup"
 
@@ -78,11 +80,11 @@ export function AuthForm({ mode }: { mode: AuthMode }) {
     }
 
     // TODO: Integrate better-auth here.
-    //   Sign in:  await authClient.signIn.email({ email, password })
-    //   Sign up:  await authClient.signUp.email({ name, email, password })
-    //   After success: router.push("/dashboard") — depends on the user's role.
-    if (isSignUp) {
-      console.info("Sign up submitted:", { name, email })
+       await authClient.signIn.email({ email, password })
+       await authClient.signUp.email({ name, email, password })
+       //   After success: router.push("/dashboard") — depends on the user's role.
+       if (isSignUp) {
+      console.info("Sign up submitted:", { name, email, password })
     } else {
       console.info("Sign in submitted:", { email })
     }
