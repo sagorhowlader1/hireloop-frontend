@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/sheet"
 import logo from "@/app/assets/logo.png"
 import { ThemeToggle, ThemeToggleCompact } from "@/components/site/theme-toggle"
+import { useSession, signOut } from "@/lib/auth-client"
 
 const NAV_LINKS = [
   { label: "Browse Jobs", href: "/jobs" },
@@ -67,7 +68,13 @@ function NavLink({
 
 export function Navbar() {
   const pathname = usePathname()
+  const {data: session} = useSession()
 
+
+  console.log('user session in navbar', session)
+  const handleSigOut = async() => {
+    await signOut()
+  }
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/70 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
       <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
@@ -91,7 +98,22 @@ export function Navbar() {
         </nav>
 
         {/* Desktop actions */}
-        <div className="hidden items-center gap-2 md:flex">
+        {
+          session?.user ? 
+          <>
+          <span>Welcome {session.user.name}</span>
+          <Button
+            variant="ghost"
+            className="text-muted-foreground cursor-pointer hover:text-foreground"
+            nativeButton={false}
+           onClick={handleSigOut}
+          >
+            Sign Out
+          </Button>
+          </>
+
+          : <>
+          <div className="hidden items-center gap-2 md:flex">
           <ThemeToggle />
           <Button
             variant="ghost"
@@ -109,6 +131,8 @@ export function Navbar() {
             Get Started
           </Button>
         </div>
+          </>
+        }
 
         {/* Mobile menu */}
         <Sheet>

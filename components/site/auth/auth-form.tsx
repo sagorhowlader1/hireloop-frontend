@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
@@ -56,6 +57,7 @@ function GoogleIcon({ className }: { className?: string }) {
 
 export function AuthForm({ mode }: { mode: AuthMode }) {
   const isSignUp = mode === "signup"
+  const router = useRouter()
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [role, setRole] = useState<"seeker" | "recruiter" | "admin">("seeker")
@@ -93,6 +95,7 @@ export function AuthForm({ mode }: { mode: AuthMode }) {
           return
         }
         console.info("Sign up submitted:", { name, email, role })
+        router.push("/")
         // TODO: redirect based on role, e.g. router.push("/dashboard")
       } else {
         const { error: signInError } = await authClient.signIn.email({
@@ -104,6 +107,7 @@ export function AuthForm({ mode }: { mode: AuthMode }) {
           return
         }
         console.info("Sign in submitted:", { email })
+        router.push("/")
         // TODO: redirect based on role, e.g. router.push("/dashboard")
       }
     } catch (err) {
