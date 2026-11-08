@@ -37,6 +37,8 @@ const SOCIALS = [
   { label: "LinkedIn", href: "https://linkedin.com", icon: FaLinkedin },
 ]
 
+  const date = new Date().getFullYear()
+
 export function Footer() {
   return (
     <footer className="relative overflow-hidden border-t bg-background">
@@ -100,7 +102,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t pt-6 text-xs text-muted-foreground sm:flex-row">
-          <span>Copyright 2024 Programming Hero</span>
+          <span>Copyright {date} HireLoop</span>
           <span>Terms & Policy - Privacy Guideline</span>
         </div>
       </div>
