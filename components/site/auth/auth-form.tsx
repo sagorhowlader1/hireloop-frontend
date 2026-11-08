@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { authClient } from "@/lib/auth-client"
-
 
 export type AuthMode = "signin" | "signup"
 
@@ -59,6 +59,7 @@ export function AuthForm({ mode }: { mode: AuthMode }) {
   const isSignUp = mode === "signup"
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [role, setRole] = useState<"seeker" | "recruiter" | "admin">("seeker")
 
   const toggle = TOGGLES[mode]
 
@@ -79,14 +80,36 @@ export function AuthForm({ mode }: { mode: AuthMode }) {
       }
     }
 
-    // TODO: Integrate better-auth here.
-       await authClient.signIn.email({ email, password })
-       await authClient.signUp.email({ name, email, password })
-       //   After success: router.push("/dashboard") — depends on the user's role.
-       if (isSignUp) {
-      console.info("Sign up submitted:", { name, email, password })
-    } else {
-      console.info("Sign in submitted:", { email })
+    // Integrate better-auth here.
+    try {
+      if (isSignUp) {
+        const { error: signUpError } = await authClient.signUp.email({
+          name,
+          email,
+          password,
+          role,
+        })
+        if (signUpError) {
+          setError(signUpError.message ?? "Sign up failed. Please try again.")
+          return
+        }
+        console.info("Sign up submitted:", { name, email, role })
+        // TODO: redirect based on role, e.g. router.push("/dashboard")
+      } else {
+        const { error: signInError } = await authClient.signIn.email({
+          email,
+          password,
+        })
+        if (signInError) {
+          setError(signInError.message ?? "Sign in failed. Please try again.")
+          return
+        }
+        console.info("Sign in submitted:", { email })
+        // TODO: redirect based on role, e.g. router.push("/dashboard")
+      }
+    } catch (err) {
+      setError("Something went wrong. Please try again.")
+      console.error(err)
     }
   }
 
@@ -131,6 +154,39 @@ export function AuthForm({ mode }: { mode: AuthMode }) {
               placeholder="Jane Cooper"
               className="h-9 bg-background/40"
             />
+          </div>
+        ) : null}
+
+        {isSignUp ? (
+          <div className="flex flex-col gap-1.5">
+            <Label>I am a</Label>
+            <RadioGroup
+              value={role}
+              onValueChange={(value) =>
+                setRole(value as "seeker" | "recruiter" | "admin")
+              }
+              className="grid grid-cols-3 gap-2"
+            >
+              {(
+                [
+                  { value: "seeker", label: "Job Seeker" },
+                  { value: "recruiter", label: "Recruiter" },
+                  { value: "admin", label: "Admin" },
+                ] as const
+              ).map((option) => (
+                <label
+                  key={option.value}
+                  className="flex cursor-pointer items-center gap-2 rounded-lg border border-input bg-background/40 px-3 py-2 text-sm transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/10"
+                >
+                  <RadioGroupItem
+                    value={option.value}
+                    id={`role-${option.value}`}
+                  />
+                  {option.label}
+                </label>
+              ))}
+            </RadioGroup>
+            <input type="hidden" name="role" value={role} />
           </div>
         ) : null}
 
