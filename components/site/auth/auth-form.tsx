@@ -116,9 +116,9 @@ export function AuthForm({ mode }: { mode: AuthMode }) {
     }
   }
 
-  function handleGoogleSignIn() {
+  async function handleGoogleSignIn() {
     // TODO: Integrate better-auth social sign-in:
-    //   await authClient.signIn.social({ provider: "google" })
+      await authClient.signIn.social({ provider: "google" })
     console.info("Google sign-in clicked")
   }
 
