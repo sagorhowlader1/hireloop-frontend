@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Manrope, Space_Mono } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navbar } from "@/components/site/navbar"
+import { Footer } from "@/components/site/footer"
 import { cn } from "@/lib/utils"
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" })
@@ -45,6 +46,7 @@ export default function RootLayout({
         <ThemeProvider defaultTheme="dark">
           <Navbar />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

@@ -105,7 +105,7 @@ export function Navbar() {
           <Button
             variant="ghost"
             className="text-muted-foreground cursor-pointer hover:text-foreground"
-            nativeButton={false}
+            nativeButton={true}
            onClick={handleSigOut}
           >
             Sign Out
