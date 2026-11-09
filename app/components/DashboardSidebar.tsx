@@ -28,7 +28,6 @@ import {
 import type { LucideIcon } from "lucide-react"
 import Link from "next/link"
 
-
 type Role = "seeker" | "recruiter" | "admin"
 
 type MenuItem = {
@@ -105,7 +104,7 @@ const menuItemsByRole: Record<Role, MenuItem[]> = {
     {
       id: "recruiter-manage-jobs",
       name: "Manage Jobs",
-      url: "/dashboard/recruite/jobs",
+      url: "/dashboard/recruiter/jobs",
       icon: ListChecks,
     },
     {
@@ -140,14 +139,24 @@ const menuItemsByRole: Record<Role, MenuItem[]> = {
       url: "/dashboard",
       icon: LayoutDashboard,
     },
-    { id: "admin-users", name: "Users", url: "/dashboard/admin/users", icon: Users },
+    {
+      id: "admin-users",
+      name: "Users",
+      url: "/dashboard/admin/users",
+      icon: Users,
+    },
     {
       id: "admin-companies",
       name: "Companies",
       url: "/dashboard/admin/companies",
       icon: Building,
     },
-    { id: "admin-jobs", name: "Jobs", url: "/dashboard/admin/jobs", icon: Briefcase },
+    {
+      id: "admin-jobs",
+      name: "Jobs",
+      url: "/dashboard/admin/jobs",
+      icon: Briefcase,
+    },
     {
       id: "admin-payments",
       name: "Payments",
