@@ -35,6 +35,7 @@ export default function NewJobPage() {
       description: String(formData.get("description") ?? "").trim(),
       location: String(formData.get("location") ?? "").trim(),
       salary: String(formData.get("salary") ?? "").trim(),
+      deadline: String(formData.get("deadline") ?? "").trim(),
       jobType,
       experience,
     }
@@ -110,6 +111,16 @@ export default function NewJobPage() {
               />
             </div>
           </div>
+        </div>
+
+        <div className="flex flex-col gap-1.5">
+          <Label htmlFor="deadline">Application Deadline</Label>
+          <Input
+            id="deadline"
+            name="deadline"
+            type="date"
+            className="h-9 bg-background/40"
+          />
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
