@@ -50,15 +50,6 @@ export default function NewJobPage() {
 
   return (
     <div className="flex flex-col gap-6 p-4 sm:p-6">
-      <div className="flex flex-col gap-1">
-        <h1 className="font-heading text-2xl font-bold text-foreground">
-          Create Job Post
-        </h1>
-        <p className="text-sm text-muted-foreground">
-          Fill in the details below to publish a new job opening.
-        </p>
-      </div>
-
       <form
         onSubmit={handleSubmit}
         className="flex flex-col gap-5 rounded-xl border bg-card p-5 elevation-card sm:p-6"
