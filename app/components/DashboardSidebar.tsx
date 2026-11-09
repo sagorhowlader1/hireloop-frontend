@@ -28,6 +28,7 @@ import {
 import type { LucideIcon } from "lucide-react"
 import Link from "next/link"
 
+
 type Role = "seeker" | "recruiter" | "admin"
 
 type MenuItem = {
@@ -54,31 +55,31 @@ const menuItemsByRole: Record<Role, MenuItem[]> = {
     {
       id: "seeker-jobs",
       name: "Jobs",
-      url: "/dashboard/jobs",
+      url: "/dashboard/seeker/jobs",
       icon: Briefcase,
     },
     {
       id: "seeker-saved-jobs",
       name: "Saved Jobs",
-      url: "/dashboard/saved-jobs",
+      url: "/dashboard/seeker/saved-jobs",
       icon: Bookmark,
     },
     {
       id: "seeker-applications",
       name: "Applications",
-      url: "/dashboard/applications",
+      url: "/dashboard/seeker/applications",
       icon: FileText,
     },
     {
       id: "seeker-billing",
       name: "Billing",
-      url: "/dashboard/billing",
+      url: "/dashboard/seeker/billing",
       icon: CreditCard,
     },
     {
       id: "seeker-settings",
       name: "Settings",
-      url: "/dashboard/settings",
+      url: "/dashboard/seeker/settings",
       icon: Settings,
     },
   ],
@@ -98,31 +99,31 @@ const menuItemsByRole: Record<Role, MenuItem[]> = {
     {
       id: "recruiter-company",
       name: "My Company",
-      url: "/dashboard/company",
+      url: "/dashboard/recruiter/company",
       icon: Building,
     },
     {
       id: "recruiter-manage-jobs",
       name: "Manage Jobs",
-      url: "/dashboard/jobs",
+      url: "/dashboard/recruite/jobs",
       icon: ListChecks,
     },
     {
       id: "recruiter-add-job",
       name: "Add Job",
-      url: "/dashboard/jobs/new",
+      url: "/dashboard/recruiter/jobs/new",
       icon: PlusCircle,
     },
     {
       id: "recruiter-applications",
       name: "Applications",
-      url: "/dashboard/applications",
+      url: "/dashboard/recruiter/applications",
       icon: FileText,
     },
     {
       id: "recruiter-settings",
       name: "Settings",
-      url: "/dashboard/settings",
+      url: "/dashboard/recruiter/settings",
       icon: Settings,
     },
   ],
@@ -139,24 +140,24 @@ const menuItemsByRole: Record<Role, MenuItem[]> = {
       url: "/dashboard",
       icon: LayoutDashboard,
     },
-    { id: "admin-users", name: "Users", url: "/dashboard/users", icon: Users },
+    { id: "admin-users", name: "Users", url: "/dashboard/admin/users", icon: Users },
     {
       id: "admin-companies",
       name: "Companies",
-      url: "/dashboard/companies",
+      url: "/dashboard/admin/companies",
       icon: Building,
     },
-    { id: "admin-jobs", name: "Jobs", url: "/dashboard/jobs", icon: Briefcase },
+    { id: "admin-jobs", name: "Jobs", url: "/dashboard/admin/jobs", icon: Briefcase },
     {
       id: "admin-payments",
       name: "Payments",
-      url: "/dashboard/payments",
+      url: "/dashboard/admin/payments",
       icon: DollarSign,
     },
     {
       id: "admin-settings",
       name: "Settings",
-      url: "/dashboard/settings",
+      url: "/dashboard/admin/settings",
       icon: Settings,
     },
   ],
